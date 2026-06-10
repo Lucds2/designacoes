@@ -52,14 +52,17 @@ body {
 
 /* Estilização da Logo de Curitiba */
 .logo-app {
-  width: 90px;               /* Tamanho ideal para uma logo de topo */
+  width: 90px;
   height: 90px;
-  object-fit: cover;         /* Garante que a imagem não distorça */
-  border-radius: 50%;        /* Deixa a logo redondinha */
-  margin-bottom: 12px;       /* Afasta um pouco do título principal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para dar destaque */
-  border: 2px solid var(--verde-suave-texto); /* Borda verde fina para dar acabamento */
-  background-color: #000;    /* Mantém a consistência com o fundo interno da arte */
+  object-fit: cover;        /* Garante o preenchimento sem distorção */
+  object-position: center;  /* Centraliza a imagem no círculo */
+  border-radius: 50%;       /* Força o formato redondo */
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid var(--verde-suave-texto); /* Borda mais destacada */
+  display: block;           /* Remove espaços extras de linha */
+  margin-left: auto;        /* Centraliza o elemento */
+  margin-right: auto;
 }
 
 /* Seção do campo de busca/rolagem */

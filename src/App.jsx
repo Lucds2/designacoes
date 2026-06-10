@@ -1,102 +1,167 @@
-import React, { useState } from 'react';
-import { listaVoluntarios } from './voluntarios';
-import './App.css';
+import React, { useState } from "react";
+import listaVoluntarios from "./voluntarios.json";
+
+import "./App.css"; // Importando o seu CSS
 import logoImg from './Logo.png'; // Garanti que está como .png que resolveu antes!
 
+
 function App() {
-  const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
-  const [valorSelect, setValorSelect] = useState("");
-
-  // Ordena os nomes em ordem alfabética para facilitar a busca por rolagem
-  const voluntariosOrdenados = [...listaVoluntarios].sort((a, b) => 
-    a.nome.localeCompare(b.nome)
-  );
-
-  const handleSelectChange = (e) => {
-    const nomeProcurado = e.target.value;
-    setValorSelect(nomeProcurado);
-    const voluntario = listaVoluntarios.find(v => v.nome === nomeProcurado);
-    setUsuarioSelecionado(voluntario);
-  };
-
-  // Função mágica que limpa a tela e reseta o campo de escolha
-  const handleLimpar = () => {
-    setUsuarioSelecionado(null);
-    setValorSelect("");
-  };
+  const [abaAtiva, setAbaAtiva] = useState("supervisor");
 
   return (
     <div className="container">
       <header className="header">
-        <img src={logoImg} alt="Logo Curitiba 2026" className="logo-app" />
-        <h1>Congresso Internacional 2026</h1>
-        <h2>Supervisores de Caixas — Designação Individual</h2>
+        <div style={{ textAlign: "center" }}>
+          <img src={logoImg} alt="Logo Curitiba 2026" className="logo-app" />
+        </div>
+        <h1>Supervisores de Caixas</h1>
+        <h2>Designação Individual - Congresso 2026</h2>
       </header>
 
-      <main className="content">
-        <div className="search-section">
-          <label htmlFor="select-voluntario">Selecione seu nome na lista:</label>
-          <select 
-            id="select-voluntario" 
-            onChange={handleSelectChange} 
-            value={valorSelect}
-            className="select-field"
-          >
-            <option value="" disabled>-- Clique para rolar e buscar seu nome --</option>
-            {voluntariosOrdenados.map((voluntario, index) => (
-              <option key={index} value={voluntario.nome}>
-                {voluntario.nome}
-              </option>
-            ))}
-          </select>
+      {/* Navegação entre Abas */}
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+        <button
+          className="btn-limpar"
+          onClick={() => setAbaAtiva("supervisor")}
+        >
+          Sou Supervisor
+        </button>
+        <button className="btn-limpar" onClick={() => setAbaAtiva("consulta")}>
+          Quem é meu supervisor?
+        </button>
+      </div>
 
-          {/* O botão só aparece na tela se houver alguém selecionado */}
-          {usuarioSelecionado && (
-            <button onClick={handleLimpar} className="btn-limpar">
-              Limpar Seleção / Sair
-            </button>
-          )}
-        </div>
+      {abaAtiva === "supervisor" ? <TelaSupervisor /> : <TelaConsulta />}
 
-        {usuarioSelecionado && (
-          <div className="card-designacao">
-            <div className="card-header">
-              <h3>{usuarioSelecionado.nome}</h3>
-              <p className="badge-congregacao">{usuarioSelecionado.congregacao}</p>
-              <div className="contato-voluntario">
-                <span>{usuarioSelecionado.celular}</span>
-                {usuarioSelecionado.email && usuarioSelecionado.email !== "NaN" && (
-                  <span> • {usuarioSelecionado.email}</span>
-                )}
-              </div>
-            </div>
+      <footer className="footer">Congresso Internacional Curitiba 2026</footer>
+    </div>
+  );
+}
 
-            <div className="resumo-designacoes">
-              <span>Total de Designações: <strong>{usuarioSelecionado.escalas.length}</strong></span>
-            </div>
+function TelaSupervisor() {
+  const [nomeSelecionado, setNomeSelecionado] = useState("");
 
-            <div className="escalas-container">
-              <h4>Seus Turnos e Horários:</h4>
-              {usuarioSelecionado.escalas.map((escala, idx) => (
-                <div key={idx} className="escala-item">
-                  <div className="escala-meta">
-                    <span className="tag-dia">{escala.dia}</span>
-                    <span className="tag-horario">{escala.horario}</span>
-                  </div>
-                  <div className="escala-detalhes">
-                    <p><strong>Setor:</strong> {escala.setor}</p>
-                    <p><strong>Posição:</strong> {escala.posicao}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+  // Encontra o voluntário baseado no que foi escolhido no select
+  const voluntarioEncontrado = listaVoluntarios.find(
+    (v) => v.nome === nomeSelecionado,
+  );
+
+  return (
+    <div className="search-section">
+      <label>Selecione seu nome:</label>
+      <select
+        className="select-field"
+        value={nomeSelecionado}
+        onChange={(e) => setNomeSelecionado(e.target.value)}
+      >
+        <option value="">-- Escolha seu nome --</option>
+        {/* Ordena os nomes alfabeticamente para facilitar a busca */}
+        {listaVoluntarios
+          .sort((a, b) => a.nome.localeCompare(b.nome))
+          .map((v) => (
+            <option key={v.nome} value={v.nome}>
+              {v.nome}
+            </option>
+          ))}
+      </select>
+
+      {voluntarioEncontrado ? (
+        <div className="card-designacao" style={{ marginTop: "20px" }}>
+          <div className="card-header">
+            <h3>{voluntarioEncontrado.nome}</h3>
           </div>
-        )}
-      </main>
+          <p className="badge-congregacao">
+            {voluntarioEncontrado.congregacao}
+          </p>
+          <div className="contato-voluntario">
+            {voluntarioEncontrado.celular}
+          </div>
 
-      <footer className="footer">
-        <p>Congresso Felicidade Eterna — Curitiba 2026</p>
-      </footer>
+          <div className="escalas-container">
+            <h4>Suas Escalas:</h4>
+            {voluntarioEncontrado.escalas.map((esc, index) => (
+              <div key={index} className="escala-item">
+                <div className="escala-meta">
+                  <span className="tag-dia">{esc.dia}</span>
+                  <span className="tag-horario">{esc.horario}</span>
+                </div>
+                <div className="escala-detalhes">
+                  <p>
+                    <strong>Setor:</strong> {esc.setor}
+                  </p>
+                  <p>
+                    <strong>Posição:</strong> {esc.posicao}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <p style={{ marginTop: "20px" }}>
+          Selecione seu nome na lista para ver suas designações.
+        </p>
+      )}
+    </div>
+  );
+}
+
+function TelaConsulta() {
+  const [dia, setDia] = useState("");
+  const [horario, setHorario] = useState("");
+  const [setor, setSetor] = useState("");
+
+  const resultado =
+    dia && horario && setor
+      ? listaVoluntarios.find((v) =>
+          v.escalas.some(
+            (e) => e.dia === dia && e.horario === horario && e.setor === setor,
+          ),
+        )
+      : null;
+
+  return (
+    <div className="search-section">
+      <select className="select-field" onChange={(e) => setDia(e.target.value)}>
+        <option value="">Selecione o Dia</option>
+        {["Sexta Feira", "Sábado", "Domingo"].map((d) => (
+          <option key={d} value={d}>
+            {d}
+          </option>
+        ))}
+      </select>
+
+      <select
+        className="select-field"
+        onChange={(e) => setHorario(e.target.value)}
+      >
+        <option value="">Selecione o Horário</option>
+        <option value="08h às 09:20">08h às 09:20</option>
+        <option value="12:10 às 13:35">12:10 às 13:35</option>
+        <option value="15:30 às 18:00">15:30 às 18:00</option>
+      </select>
+
+      <select
+        className="select-field"
+        onChange={(e) => setSetor(e.target.value)}
+      >
+        <option value="">Selecione o Setor</option>
+        <option value="Primeiro Anel">Primeiro Anel</option>
+        <option value="Segundo Anel">Segundo Anel</option>
+        <option value="Terceiro Anel">Terceiro Anel</option>
+        <option value="Gramado">Gramado</option>
+      </select>
+
+      {resultado && (
+        <div className="card-designacao">
+          <h3>Responsável:</h3>
+          <p>
+            <strong>{resultado.nome}</strong>
+          </p>
+          <p className="badge-congregacao">{resultado.congregacao}</p>
+          <p className="contato-voluntario">{resultado.celular}</p>
+        </div>
+      )}
     </div>
   );
 }
