@@ -1,0 +1,298 @@
+/* Variáveis de Cores Suaves (Tons Pastel/Terrosos) */
+:root {
+  --bg-principal: #FDFBF7;          /* Areia bem clarinho */
+  --texto-marrom: #4E342E;          /* Marrom escuro para leitura confortável */
+  --verde-suave-bg: #E8F5E9;        /* Fundo verde pastel */
+  --verde-suave-texto: #2E7D32;     /* Texto verde floresta */
+  --laranja-suave-bg: #FFF3E0;      /* Fundo laranja pastel */
+  --laranja-suave-texto: #E65100;   /* Texto laranja escuro */
+  --borda-suave: #D7CCC8;           /* Divisórias em marrom bem claro */
+}
+
+body {
+  background-color: var(--bg-principal);
+  color: var(--texto-marrom);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Container principal centralizado e focado */
+.container {
+  width: 100%;
+  max-width: 550px;
+  margin: 20px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho do Congresso */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--laranja-suave-bg);
+  padding-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 1.6rem;
+  color: var(--verde-suave-texto);
+  margin: 0 0 8px 0;
+}
+
+.header h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--texto-marrom);
+  opacity: 0.9;
+}
+
+/* Estilização da Logo de Curitiba */
+.logo-app {
+  width: 90px;               /* Tamanho ideal para uma logo de topo */
+  height: 90px;
+  object-fit: cover;         /* Garante que a imagem não distorça */
+  border-radius: 50%;        /* Deixa a logo redondinha */
+  margin-bottom: 12px;       /* Afasta um pouco do título principal */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para dar destaque */
+  border: 2px solid var(--verde-suave-texto); /* Borda verde fina para dar acabamento */
+  background-color: #000;    /* Mantém a consistência com o fundo interno da arte */
+}
+
+/* Seção do campo de busca/rolagem */
+.search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search-section label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Customização do Select (Campo de Rolagem) */
+.select-field {
+  padding: 14px;
+  font-size: 1rem;
+  border: 1px solid var(--borda-suave);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--texto-marrom);
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.select-field:focus {
+  border-color: var(--verde-suave-texto);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+
+/* Cartão de Designação do Voluntário */
+.card-designacao {
+  background: white;
+  border: 1px solid var(--borda-suave);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(93, 64, 55, 0.05);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.card-header h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  color: var(--texto-marrom);
+}
+
+.badge-congregacao {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  color: #795548;
+  font-weight: 500;
+}
+
+.contato-voluntario {
+  font-size: 0.85rem;
+  color: #8D6E63;
+  margin-bottom: 15px;
+}
+
+/* Caixa com a quantidade total de turnos */
+.resumo-designacoes {
+  margin: 20px 0;
+  padding: 12px;
+  background-color: var(--verde-suave-bg);
+  color: var(--verde-suave-texto);
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid rgba(46, 125, 50, 0.1);
+}
+
+/* Container das escalas */
+.escalas-container h4 {
+  margin: 20px 0 12px 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--borda-suave);
+  padding-bottom: 5px;
+}
+
+/* Cada Bloco de Turno Individual */
+.escala-item {
+  border-left: 4px solid var(--laranja-suave-texto);
+  background-color: #FAF8F5;
+  padding: 16px;
+  margin-bottom: 14px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+}
+
+.escala-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.tag-dia {
+  background-color: var(--verde-suave-bg);
+  color: var(--verde-suave-texto);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.tag-horario {
+  background-color: var(--laranja-suave-bg);
+  color: var(--laranja-suave-texto);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.escala-detalhes p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Rodapé */
+.footer {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 0.85rem;
+  color: #A1887F;
+  border-top: 1px solid var(--borda-suave);
+  padding-top: 15px;
+}
+
+/* Animação suave para quando o cartão aparece */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilização do Botão Limpar */
+.btn-limpar {
+  background-color: transparent;
+  color: #795548;                 /* Marrom intermediário */
+  border: 1px solid var(--borda-suave);
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;                    /* Ocupa a largura total no celular */
+  margin-top: 5px;
+}
+
+.btn-limpar:hover {
+  background-color: var(--laranja-suave-bg); /* Fundo laranja pastel ao passar o mouse */
+  color: var(--laranja-suave-text);
+  border-color: var(--laranja-suave-texto);
+}
+
+.btn-limpar:active {
+  transform: scale(0.98);          /* Efeito de clique físico */
+}
+
+/* ==========================================================================
+   Ajustes de Responsividade (Celulares e Tablets)
+   ========================================================================== */
+
+/* Para Celulares Médios e Pequenos (Telas até 480px) */
+@media (max-width: 480px) {
+  .container {
+    margin: 10px auto;
+    padding: 12px;
+  }
+
+  .header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  .header h1 {
+    font-size: 1.35rem; /* Diminui o título para não quebrar linha feio no celular */
+  }
+
+  .header h2 {
+    font-size: 0.95rem;
+  }
+
+  .logo-app {
+    width: 75px; /* Logo um pouco menor em telas pequenas */
+    height: 75px;
+  }
+
+  .select-field {
+    padding: 12px;
+    font-size: 0.9rem; /* Facilita o clique e a leitura no celular */
+  }
+
+  .card-designacao {
+    padding: 16px; /* Mais espaço útil interno no cartão */
+    border-radius: 10px;
+  }
+
+  .card-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .escala-item {
+    padding: 12px;
+  }
+
+  .escala-meta {
+    flex-direction: row; /* Mantém as tags lado a lado */
+    gap: 6px;
+  }
+
+  .tag-dia, .tag-horario {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+}
+
+/* Para Celulares Muito Pequenos (Telas até 360px) */
+@media (max-width: 360px) {
+  .header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .contato-voluntario {
+    display: flex;
+    flex-direction: column; /* Coloca telefone e e-mail um embaixo do outro se a tela for minúscula */
+    gap: 4px;
+  }
+}
