@@ -229,6 +229,13 @@ body {
   transform: scale(0.98);          /* Efeito de clique físico */
 }
 
+button:disabled {
+  opacity: 0.3;          /* Fica bem clarinho/desfocado */
+  cursor: not-allowed;   /* Mostra um ícone de "proibido" ao passar o mouse */
+  filter: grayscale(1);  /* Opcional: deixa o botão preto e branco */
+  transform: none;       /* Remove qualquer animação de clique */
+}
+
 /* ==========================================================================
    Ajustes de Responsividade (Celulares e Tablets)
    ========================================================================== */
