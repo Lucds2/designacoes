@@ -42,4 +42,4 @@ Caso queira clonar o repositório e rodar o ambiente de desenvolvimento em sua m
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/SEU-USUARIO/designacoes.git](https://github.com/SEU-USUARIO/designacoes.git)
+   git clone [https://github.com/Lucds2/designacoes.git](https://github.com/Lucds2/designacoes.git)
